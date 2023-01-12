@@ -37,9 +37,24 @@ export function TableDrawer(){
     const coordinatesForTable = useSelector(selectCoordinates)
     const dispatch = useDispatch()
 
+    let selectedRowKeys;
+
+    const rowSelection = {
+        selectedRowKeys,
+        onChange: onSelectChange,
+        type: "radio"
+    }
+
+    function onSelectChange(selectedRowKeys){
+
+        let valuesForTheKey
+
+        dispatch({type: 'USER_CLICKED_ON_A_ROW', value: selectedRowKeys})
+    }
+
     return (
         <div>
-            <Table dataSource={coordinatesForTable} columns={columns}></Table>
+            <Table rowSelection={rowSelection} dataSource={coordinatesForTable} columns={columns}></Table>
             <Button className={'centerButton'} type={"primary"} onClick={() => dispatch({type: 'USER_ADD_COORDINATES'})}>Добавить координаты</Button>
         </div>
     )
