@@ -8,9 +8,9 @@ function* addCoordinates(action) {
     try {
         let coordinate = {
             number: '2',
-            coordinateBegXLat: '59.84660399',
+            coordinateBegXLat: '29.84660399',
             coordinateBegYLng: '30.29496392',
-            coordinateEndXLat: '59.82934196',
+            coordinateEndXLat: '29.82934196',
             coordinateEndYLng: '30.42423701'
         }
         yield put(addCoordinate(coordinate));
