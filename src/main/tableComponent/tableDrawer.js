@@ -1,8 +1,9 @@
 import React from "react";
 import {Button, Table} from "antd";
 import {useDispatch, useSelector} from "react-redux";
-import {selectCoordinates} from "../store/coordinates";
+import {getCoordinates} from "../reducers/coordinates";
 import '../../styles/tableDrawer.sass'
+import {sagaActions} from "../saga/sagaActions";
 
 const columns = [
     {
@@ -34,7 +35,7 @@ const columns = [
 
 export function TableDrawer(){
 
-    const coordinatesForTable = useSelector(selectCoordinates)
+    const coordinatesForTable = useSelector(getCoordinates)
     const dispatch = useDispatch()
 
     let selectedRowKeys;
@@ -47,15 +48,15 @@ export function TableDrawer(){
 
     function onSelectChange(selectedRowKeys){
 
-        let valuesForTheKey
+        let coordinates = coordinatesForTable.filter(e => e.key === selectedRowKeys[0])[0]
 
-        dispatch({type: 'USER_CLICKED_ON_A_ROW', value: selectedRowKeys})
+        dispatch({type: sagaActions.USER_CLICKED_ON_A_ROW, value: coordinates})
     }
 
     return (
         <div>
             <Table rowSelection={rowSelection} dataSource={coordinatesForTable} columns={columns}></Table>
-            <Button className={'centerButton'} type={"primary"} onClick={() => dispatch({type: 'USER_ADD_COORDINATES'})}>Добавить координаты</Button>
+            <Button className={'centerButton'} type={"primary"} onClick={() => dispatch({type: sagaActions.USER_ADD_COORDINATES})}>Добавить координаты</Button>
         </div>
     )
 }

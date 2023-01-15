@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.sass';
 import {Provider} from "react-redux";
 import store from './main/store/store.js'
-import Map from "./main/mapComponent/Map.js"
+import {Map} from "./main/mapComponent/Map.js"
 import {TableDrawer} from "./main/tableComponent/tableDrawer";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -13,7 +13,7 @@ root.render(
           <div className={'tableContainer'}>
               <TableDrawer/>
           </div>
-          <div className={'mapContainer'}>
+          <div id={"map"} className={'mapContainer'}>
             <Map />
           </div>
       </div>

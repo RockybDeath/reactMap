@@ -1,14 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
-import coordinatesReducer from "./coordinates";
 import createSagaMiddleware from 'redux-saga'
 import mySaga from "../saga/sagas";
+import rootReducer from "../reducers/mainReducer";
 
 const sagaMiddleware = createSagaMiddleware()
 
 export default configureStore({
-    reducer: {
-        coordinates: coordinatesReducer
-    },
+    reducer: rootReducer,
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(sagaMiddleware)
 })
 
